@@ -24,13 +24,12 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 
-@NamedQueries({
-    @NamedQuery(name = "Player.findAll", query = "SELECT p FROM Player p"),
-    @NamedQuery(name = "Player.findFromName", query = "SELECT p FROM Player p WHERE p.name = :name")
-})
-
 @Entity
 @Table (name="player")
+@NamedQueries({
+    @NamedQuery(name = "Player.findFromName", query = "SELECT p FROM Player p WHERE p.name = :name"),
+    @NamedQuery(name = "Player.findAll", query = "SELECT p FROM Player p")
+})
 public class Player implements Serializable {
     
     @Id
@@ -41,7 +40,7 @@ public class Player implements Serializable {
     
     public int age;
     
-    public int phone;
+    public String phone;
     
     public int height;
     
@@ -56,7 +55,7 @@ public class Player implements Serializable {
     @Transient
     private double totalRank;
     
-    public Player(String name, int age, int phone, int height, double weight) {
+    public Player(String name, int age, String phone, int height, double weight) {
         this.name = name;
         this.age = age;
         this.phone = phone;
@@ -96,11 +95,11 @@ public class Player implements Serializable {
         this.age = age;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

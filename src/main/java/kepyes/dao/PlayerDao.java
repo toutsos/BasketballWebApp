@@ -5,13 +5,11 @@
  */
 package kepyes.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import kepyes.entities.Player;
-import kepyes.entities.PlayerTraining;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import org.hibernate.Session;
 
 /**
  *
@@ -19,14 +17,22 @@ import org.hibernate.Session;
  */
 public class PlayerDao extends JPAUtil<Player> {
     
-    public List<Player> findAll(){
-        return super.findAll("from basketball.player");
-    }
+    private static final String FINDALL = "select p from Player p";
+    
     
     public List<Player> findAllPlayers(){
+        List<Player> players = null;
         EntityManager em = getEntityManager();
-        TypedQuery query = em.createNamedQuery("Player.findAll", Player.class);
-        List<Player> players = query.getResultList();
+        try {
+//            TypedQuery<Player> tq = em.createNamedQuery("Player.findAll",Player.class);
+//            players = tq.getResultList();
+           players = em.createQuery(FINDALL, Player.class).getResultList();
+           
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        em.close();
+        
         return players;
     }
     
@@ -75,25 +81,7 @@ public class PlayerDao extends JPAUtil<Player> {
        em.getTransaction().commit();
        em.close();
     }
-    
-//    public Player updateTrainings(Player c){
-//        EntityManager em = getEmf().createEntityManager();
-//        em.getTransaction().begin();
-//        c.setTrainings(c.getTrainings()+1);
-//        em.getTransaction().commit();
-//        closeEntityManager();
-//        return c;
-//    }
-    
-//    public void updateTraining(Player c){
-//        EntityManager em = getEmf().createEntityManager();
-//        em.getTransaction().begin();
-//        Player old = find(c.getId());
-//        old.trainings++;
-//        old.setPlayerTrainings(c.getPlayerTrainings());
-//        em.getTransaction().commit();
-//        closeEntityManager();
-//    }
+
 
     public void delete (int id){
         super.delete(Player.class,id);

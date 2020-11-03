@@ -16,7 +16,7 @@ import kepyes.entities.Player;
 public class PlayerService {
     PlayerDao pDao = new PlayerDao();
     
-    public List<Player> getPlayer(){
+    public List<Player> getPlayers(){
         return pDao.findAllPlayers();
     }
     
@@ -28,8 +28,8 @@ public class PlayerService {
         return pDao.update(c);
     }
     
-    public void deletePlayer(Player c){
-        pDao.delete(c.getId());
+    public void deletePlayer(int c){
+        pDao.delete(c);
     }
     
 }

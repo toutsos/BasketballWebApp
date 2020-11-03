@@ -74,12 +74,5 @@ public class JPAUtil<T> {
         em.close();
     }
     
-    public List<T> findAllPlayers(String query) {
-        getEntityManager();
-        List<T> list = em.createQuery(query).getResultList();
-        em.close();
-        return  list;
-        
-    }
     
 }//class

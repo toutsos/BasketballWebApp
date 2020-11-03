@@ -74,7 +74,7 @@ public class Team {
     public void showPlayers (){
         PlayerDao pd = new PlayerDao();
         List <Player> ls = new ArrayList<>();
-        ls = pd.findAllPlayers();
+//        ls = pd.findAll();
         for(int i=0;i<ls.size();i++){
             System.out.println(ls.get(i).toString());
         }//for

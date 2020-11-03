@@ -13,9 +13,9 @@
     </head>
     <body>
         <h1>Welcome to our Team!</h1>
-        <a href="<%request.getContextPath();%>/teamMenu"><h2>Team Information</h2></a>
-        <a href="<% request.getContextPath();%>/trainingInformation"><h2>Team Information</h2></a>
-        <a href="<% request.getContextPath();%>/gameInformation"><h2>Team Information</h2></a> 
+        <a href="<%request.getRequestURI();%>/BasketWebApp/teamMenu.jsp"><h2>Team Information</h2></a>
+        <a href="<% request.getContextPath();%>/trainingInformation"><h2>Trainings Information</h2></a>
+        <a href="<% request.getContextPath();%>/gameInformation"><h2>Games Information</h2></a> 
         
         
            
