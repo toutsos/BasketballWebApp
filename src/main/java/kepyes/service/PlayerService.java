@@ -20,6 +20,14 @@ public class PlayerService {
         return pDao.findAllPlayers();
     }
     
+    public Player findPlayer(int id){
+        return pDao.find(id);
+    }
+    
+    public Player findPlayerFromName(String name){
+        return pDao.findPlayerFromName(name);
+    }
+    
     public Player createPlayer(Player c){
         return pDao.save(c);
     }

@@ -11,8 +11,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,7 +50,7 @@ public class Training implements Serializable{
     @ManyToOne
     private Stadium trainingStadium;
     
-    @OneToMany(mappedBy = "training")
+    @OneToMany(mappedBy = "training", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<PlayerTraining> players = new HashSet<>();
     
    

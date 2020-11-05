@@ -5,6 +5,7 @@
  */
 package kepyes.dao;
 
+import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import kepyes.entities.Coach;
@@ -13,11 +14,19 @@ import java.util.List;
  *
  * @author a.toutsios
  */
+
 public class CoachDao extends JPAUtil<Coach>{
-        
+
+        private static final String FINDALL = "SELECT c FROM Coach c";
+    
         public List<Coach> findAll(){
-            return super.findAll("from Coach");
+            List<Coach> coaches = new ArrayList<>();
+            EntityManager em = getEntityManager();
+            coaches = em.createQuery(FINDALL, Coach.class).getResultList();
+            em.close();
+            return coaches;
         }
+        
         public Coach find(int id){
             return super.find(Coach.class, id);
         }

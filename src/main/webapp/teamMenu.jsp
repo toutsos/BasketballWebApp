@@ -14,9 +14,9 @@
     <body>
         <h1>Team information</h1>
         <a href="<%request.getContextPath();%>/BasketWebApp/playerlist"><h2>Player Information</h2></a>
-        <a href="<%request.getContextPath();%>/TODO"><h2>Coach Information</h2></a>
-        <a href="<%request.getContextPath();%>/TODO"><h2>Stadium Information</h2></a>
-       <button type="button" name="back" onclick="history.back()">back</button>
+        <a href="<%request.getContextPath();%>/BasketWebApp/coachMenu.jsp"><h2>Coach Information</h2></a>
+        <a href="<%request.getContextPath();%>/BasketWebApp/stadiumlist"><h2>Stadium Information</h2></a>
+       <a href="<%request.getContextPath();%>/BasketWebApp/mainMenu.jsp"><input type=button value=Back></a>
         
     </body>
 </html>

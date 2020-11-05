@@ -18,14 +18,13 @@ import javax.persistence.TypedQuery;
 public class PlayerDao extends JPAUtil<Player> {
     
     private static final String FINDALL = "select p from Player p";
+    private static final String FINDFROMNAME = "SELECT p FROM Player p WHERE p.name = :name";
     
     
     public List<Player> findAllPlayers(){
         List<Player> players = null;
         EntityManager em = getEntityManager();
         try {
-//            TypedQuery<Player> tq = em.createNamedQuery("Player.findAll",Player.class);
-//            players = tq.getResultList();
            players = em.createQuery(FINDALL, Player.class).getResultList();
            
         } catch (Exception e) {
@@ -38,7 +37,7 @@ public class PlayerDao extends JPAUtil<Player> {
     
     public Player findPlayerFromName(String name){
         EntityManager em = getEntityManager();
-        TypedQuery<Player> query = em.createNamedQuery("entities.Player.findFromName", Player.class);
+        TypedQuery<Player> query = em.createQuery(FINDFROMNAME, Player.class);
         query.setParameter("name", name);
         List<Player> list = query.getResultList();
         return list.get(0);

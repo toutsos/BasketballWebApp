@@ -49,7 +49,7 @@ public class PlayerListSerlvet extends HttpServlet {
                 .append("<tr>");
             }
         builder.append("</table>")
-                .append("<button type=\"button\" name=\"back\" onclick=\"history.back()\">back</button>")
+                .append("<a href="+request.getContextPath()+"/teamMenu.jsp><input type=button value=Back></a>")
                 .append("</body>")
                 .append("</html>");
         PrintWriter out = response.getWriter();

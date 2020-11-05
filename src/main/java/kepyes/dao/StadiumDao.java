@@ -15,9 +15,15 @@ import javax.persistence.TypedQuery;
  * @author a.toutsios
  */
 public class StadiumDao extends JPAUtil<Stadium> {
-    
+   
+    private static final String FINDALL = "SELECT s FROM Stadium s";
     public List<Stadium> findAll(){
-            return super.findAll("from basketball.stadium");
+            List<Stadium> stadiums = new ArrayList<>();
+            EntityManager em = getEntityManager();
+            stadiums = em.createQuery(FINDALL, Stadium.class).getResultList();
+            em.close();
+            return stadiums;
+            
         }
         public Stadium find(int id){
             return super.find(Stadium.class, id);
