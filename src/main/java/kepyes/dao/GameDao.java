@@ -8,15 +8,22 @@ package kepyes.dao;
 import kepyes.entities.Game;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 /**
  *
  * @author a.toutsios
  */
 public class GameDao extends JPAUtil<Game> {
     
+    private static final String FINDALL = "SELECT g FROM Game g";
+    
     public List<Game> findAll(){
-            return super.findAll("from coach");
+            EntityManager em = getEntityManager();
+            TypedQuery query = em.createQuery(FINDALL, Game.class);
+            List<Game> games = query.getResultList();
+            return games;
         }
+    
         public Game find(int id){
             return super.find(Game.class, id);
         }

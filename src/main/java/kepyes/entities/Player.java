@@ -52,6 +52,9 @@ public class Player implements Serializable {
     @OneToMany (mappedBy = "player", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<PlayerTraining> trainings = new HashSet<>();
     
+    @OneToMany (mappedBy = "player", cascade =CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<PlayerGame> games = new HashSet<>();
+
     @Transient
     private double totalRank;
     
@@ -123,8 +126,8 @@ public class Player implements Serializable {
         return totalTrainings;
     }
 
-    public void setTotalTrainings(int trainings) {
-        this.totalTrainings = trainings;
+    public void setTotalTrainings(int i) {
+        this.totalTrainings = i;
     }
 
     public Set<PlayerTraining> getTrainings() {
@@ -141,6 +144,14 @@ public class Player implements Serializable {
 
     public void setTotalRank(double totalRank) {
         this.totalRank = totalRank;
+    }
+    
+        public Set<PlayerGame> getGames() {
+        return games;
+    }
+
+    public void setGames(Set<PlayerGame> games) {
+        this.games = games;
     }
     
     

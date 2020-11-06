@@ -72,8 +72,11 @@ public class AddPlayersTraining extends HttpServlet {
          int rank = Integer.parseInt(srank);
          PlayerService ps = new PlayerService();
          Player player = ps.findPlayerFromName(name);
+         player.setTotalTrainings(player.getTotalTrainings()+1);
          PlayerTraining newpt = new PlayerTraining(rank, player, training);
          ptd.save(newpt);
+         System.out.println(player.toString());
+         ps.updatePlayer(player);
          RequestDispatcher dispatcher = request.getRequestDispatcher("../traininglist");
          dispatcher.forward(request,response);
     }

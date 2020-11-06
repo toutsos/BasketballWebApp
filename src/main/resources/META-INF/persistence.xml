@@ -9,6 +9,7 @@
         <class>kepyes.entities.PlayerTraining</class>
         <class>kepyes.entities.Stadium</class>
         <class>kepyes.entities.Training</class>
+        <class>kepyes.entities.PlayerGame</class>
          <exclude-unlisted-classes>false</exclude-unlisted-classes>
             <properties>
               <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/basketball?serverTimezone=UTC"/>

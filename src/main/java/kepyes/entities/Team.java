@@ -97,12 +97,7 @@ public class Team {
 //            System.out.println("No scheduled trainings!");
 //        }//if
 //    }//showTrainings
-    
-    public void showGames(){
-        for (int i=0;i<games.size();i++){
-           games.get(i).showGameDetails();
-        }//for
-    }//showTrainings
+
     
     public void addNewGame(Game x){
         games.add(x);

@@ -78,8 +78,11 @@ public class TrainingPlayerServlet extends HttpServlet {
                 .append("<h1>Player List</h1>")
                 .append("<table border=\"1\">");
         for (PlayerTraining pt:playerTrainings){
-            builder.append("<td>").append(pt.getPlayer().getName()).append("</td>")
-            .append("<td>").append(pt.getRank()).append("</td>");
+            builder.append("<tr>")
+            .append("<td>").append(pt.getPlayer().getName()).append("</td>")
+            .append("<td>").append(pt.getRank()).append("</td>")
+            .append("<tr>");       
+            
         }
          builder.append("</table>")
                 .append("<a href="+request.getContextPath()+"/traininglist><input type=button value=Back></a>")
@@ -87,11 +90,6 @@ public class TrainingPlayerServlet extends HttpServlet {
                 .append("</html>");
         PrintWriter out = response.getWriter();
         out.println(builder);
-        
-        
-        
-        
-        
     }
 
     /**

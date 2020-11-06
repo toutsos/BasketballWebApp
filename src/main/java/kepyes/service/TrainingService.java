@@ -7,6 +7,7 @@ package kepyes.service;
 
 import java.util.List;
 import kepyes.dao.TrainingDao;
+import kepyes.entities.Player;
 import kepyes.entities.Training;
 
 /**
@@ -22,6 +23,10 @@ public class TrainingService {
     
     public Training findTraining(int id){
         return tDao.find(id);
+    }
+    
+    public List<Player> sortTraining(){
+        return tDao.playersSortedFromTrainingsNumber();
     }
     
     public Training createTraining(Training t){

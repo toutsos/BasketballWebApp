@@ -13,12 +13,15 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 /**
  *
  * @author a.toutsios
  */
 public class TrainingDao extends JPAUtil<Training>{
+   
+    private static final String SORTFROMTRAININGS = "SELECT * FROM player order by trainings_number DESC";
     
     public List<Training> findAll(){
             return super.findAll("from Training");
@@ -27,11 +30,21 @@ public class TrainingDao extends JPAUtil<Training>{
             return super.find(Training.class, id);
         }
         
-        public Training getTrainingWithoutClosingEm(int id){
+        public List<Player> playersSortedFromTrainingsNumber (){
+            List<Player> playersSorted = null;
             EntityManager em = getEntityManager();
-            Training t = em.find(Training.class, id);
-            return t;
-        }
+            Query query = em.createNativeQuery(SORTFROMTRAININGS, Player.class);
+            playersSorted = (List<Player>)query.getResultList();
+            return playersSorted;
+        } 
+        
+//        public List<Player> playerSortedFromRank(List<Player> playerList){
+//            List<Player> playerSortedFromRank = null;
+//            EntityManager em = getEntityManager();
+//            if(playerList.size()<= 10){
+//                
+//            }
+//           }
         
         public Training save(Training c){
             return super.save(c);
