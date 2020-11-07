@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,31 +33,10 @@ public class PlayerListSerlvet extends HttpServlet {
             throws ServletException, IOException {
         PlayerService ps = new PlayerService();
         List<Player> listOfPlayers = ps.getPlayers();
-        StringBuilder builder = new StringBuilder();
-        builder.append("<!DOCTYPE html>")
-                .append("<html>")
-                .append("<head>")
-                .append("<title>Player List</title>")
-                .append("</head>")
-                .append("<body>")
-                .append("<a href=\"").append(request.getContextPath()).append("/player/insert").append("\"> NEW PLAYER</a>")
-                .append("<h1>Player List</h1>")
-                .append("<table border=\"1\">");
-        for (Player p : listOfPlayers){
-                builder.append("<tr>")
-                .append("<td>").append(p.getName()).append("</td>")
-                .append("<td>").append(p.getPhone()).append("</td>")
-                .append("<td>").append("<a href=\"").append(request.getContextPath()).append("/player/delete?id=").append(p.getId()).append("\">delete</a>").append("</td>")
-                .append("<tr>");
-            }
-        builder.append("</table>")
-                .append("<a href="+request.getContextPath()+"/teamMenu.jsp><input type=button value=Back></a>")
-                .append("</body>")
-                .append("</html>");
-        PrintWriter out = response.getWriter();
-        out.println(builder);
-                
-        }//doGet
+        request.setAttribute("listOfPlayers", listOfPlayers);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/player/playerList.jsp");
+        dispatcher.forward(request, response);
+    }//doGet
         
 
     /**

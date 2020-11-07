@@ -27,6 +27,13 @@ public class PlayerGameDao extends JPAUtil<PlayerGame>{
         return players;
     }
     
+    public List<Game> findGeneratedGames(){
+        EntityManager em = getEntityManager();
+        TypedQuery query = em.createQuery("SELECT DISTINCT pg.game FROM PlayerGame pg", Game.class);
+        List<Game> games = query.getResultList();
+        return games;
+    }
+    
     
     public PlayerGame find(int id){
         return super.find(PlayerGame.class, id);

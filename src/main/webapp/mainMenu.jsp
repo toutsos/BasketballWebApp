@@ -12,11 +12,12 @@
         <title>Basket APP</title>
     </head>
     <body>
+        <div align="center">
         <h1>Welcome to our Team!</h1>
-        <a href="<%request.getRequestURI();%>/BasketWebApp/teamMenu.jsp"><h2>Team Information</h2></a>
-        <a href="<% request.getContextPath();%>/BasketWebApp/trainingMenu.jsp"><h2>Trainings Information</h2></a>
-        <a href="<% request.getContextPath();%>/BasketWebApp/gameMenu.jsp"><h2>Games Information</h2></a> 
-        
+        <a href="<%request.getRequestURI();%>/BasketWebApp/menu/teamMenu.jsp"><h2>Team Information</h2></a>
+        <a href="<% request.getContextPath();%>/BasketWebApp/menu/trainingMenu.jsp"><h2>Trainings Information</h2></a>
+        <a href="<% request.getContextPath();%>/BasketWebApp/menu/gameMenu.jsp"><h2>Games Information</h2></a> 
+        </div>
         
            
     </body>

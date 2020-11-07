@@ -31,31 +31,8 @@ public class CreateCoachServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        StringBuilder builder = new StringBuilder();
-        String contextPath = request.getContextPath();
-        builder.append("<!DOCTYPE html>")
-                .append("<html>")
-                .append("<head>")
-                .append("<title>Insert Coach</title>")
-                .append("</head>")
-                .append("<body>")
-                .append("<h1>New Coach</h1>")
-                .append("<form action= \"").append(contextPath).append("/insertcoach\" method= \"post\">")
-                .append("Name:").append("<input type=\"text\" name=\"name\">")
-                .append("<br/>")
-                .append("Salary:").append("<input type=\"text\" name=\"salary\">")
-                .append("<br/>")
-                .append("Start Date:").append("<input type=\"date\" name=\"date\">")
-                .append("<br/>")
-                .append("<input type=\"submit\" value=\"Submit\">")
-                .append("</form>")
-                .append("<a href="+request.getContextPath()+"/coachMenu.jsp><input type=button value=Back></a>")
-                .append("</body>")
-                .append("</html>");
-
-        PrintWriter out = response.getWriter();
-        out.println(builder);
-        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/coach/insertCoach.jsp");
+        dispatcher.forward(request, response);
     }
 
     
@@ -71,8 +48,8 @@ public class CreateCoachServlet extends HttpServlet {
         
         Coach newCoach = new Coach(name,salary,date);
         cs.createCoach(newCoach);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../coachMenu.jsp");
-        dispatcher.forward(request,response);
+        response.sendRedirect("menu/coachMenu.jsp");
+        
     }
 
 }

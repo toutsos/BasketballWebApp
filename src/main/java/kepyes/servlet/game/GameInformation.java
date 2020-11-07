@@ -8,6 +8,7 @@ package kepyes.servlet.game;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,42 +31,16 @@ public class GameInformation extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-            int id = Integer.parseInt(request.getParameter("id"));
-            PlayerGameDao pgd = new PlayerGameDao();
-            List<PlayerGame> listOfPlayers = pgd.findAllPlayersGames();
-            GameService gs = new GameService();
-            Game game = gs.findGame(id);
-            StringBuilder builder = new StringBuilder();
-            builder.append("<!DOCTYPE html>")
-                .append("<html>")
-                .append("<head>")
-                .append("<title>Player List</title>")
-                .append("</head>")
-                .append("<body>")
-                .append("<h1>Date of Game: ").append(game.getGameDateTime()).append(" ,Opponent: ").append(game.getOpponent())
-                .append("<h1>Player List</h1>")
-//                .append("<input type=\"hidden\" name=\"passId\" value="+id+">")
-                .append("<table border=\"1\">");
-        for (int i = 0;i<listOfPlayers.size();i++){
-                if(listOfPlayers.get(i).getGame().getId() == id){
-                builder.append("<tr>")
-                .append("<td>").append(listOfPlayers.get(i).getPlayer().getName()).append("</td>")
-                .append("<td>").append(listOfPlayers.get(i).getPoints()).append("</td>");
-                if(listOfPlayers.get(i).getPoints()== 0){
-                     builder.append("<td>").append("<a href=\"").append(request.getContextPath()).append("/game/addpoints?id=").append(listOfPlayers.get(i).getId()).append("&passId=").append(id).append("\">Add points</a>").append("</td>");
-                }
-                builder.append("<tr>");
-                }
-            }
-        builder.append("</table>")
-                .append("<a href="+request.getContextPath()+"/gameMenu.jsp><input type=button value=Back></a>")
-                .append("</body>")
-                .append("</html>");
-        PrintWriter out = response.getWriter();
-        out.println(builder);
-                
-        
+        throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        PlayerGameDao pgd = new PlayerGameDao();
+        List<PlayerGame> listOfPlayersGames = pgd.findAllPlayersGames();
+        GameService gs = new GameService();
+        Game game = gs.findGame(id);
+        request.setAttribute("listOfPlayersGames", listOfPlayersGames);
+        request.setAttribute("game", game);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/game/gamePlayerList.jsp");
+        dispatcher.forward(request, response);
     }
 
     

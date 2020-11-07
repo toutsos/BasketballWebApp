@@ -31,32 +31,8 @@ public class CreateTrainingServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        StringBuilder builder = new StringBuilder();
-        String contextPath = request.getContextPath();
-        builder.append("<!DOCTYPE html>")
-                .append("<html>")
-                .append("<head>")
-                .append("<title>Insert Training</title>")
-                .append("</head>")
-                .append("<body>")
-                .append("<h1>New Training</h1>")
-                .append("<form action= \"").append(contextPath).append("/training/insert\" method= \"post\">")
-                .append("Date:").append("<input type=\"date\" name=\"date\">")
-                .append("<br/>")
-                .append("Time:").append("<input type=\"time\" name=\"time\">")
-                .append("<br/>")
-                
-                .append("Stadium:").append("<input type=\"text\" name=\"stadium\">")
-                .append("<br/>")
-                .append("<input type=\"submit\" value=\"Submit\">")
-                .append("<br/>")
-                .append("</form>")
-                .append("<a href="+request.getContextPath()+"/trainingMenu.jsp><input type=button value=Back></a>")
-                .append("</body>")
-                .append("</html>");
-
-        PrintWriter out = response.getWriter();
-        out.println(builder);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/training/trainingForm.jsp");
+        dispatcher.forward(request, response);
         
     }
 
@@ -76,8 +52,8 @@ public class CreateTrainingServlet extends HttpServlet {
         Stadium stadium = ss.findStadiumFromName(sstadium);
         Training newTraining = new Training(dateTime, stadium);
         ts.createTraining(newTraining);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../traininglist");
-        dispatcher.forward(request,response);
+        response.sendRedirect("../traininglist");
+        
     }
 
 }

@@ -53,9 +53,7 @@ public class GeneratePlayersServlet extends HttpServlet {
             }//for
         }//else
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../gamelist");
-        dispatcher.forward(request,response);
-        
+        response.sendRedirect("../gamelist");
     }//doGet
 
     @Override

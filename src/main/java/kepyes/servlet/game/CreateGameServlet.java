@@ -34,35 +34,8 @@ public class CreateGameServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
-        StringBuilder builder = new StringBuilder();
-        String contextPath = request.getContextPath();
-        builder.append("<!DOCTYPE html>")
-                .append("<html>")
-                .append("<head>")
-                .append("<title>Add Game</title>")
-                .append("</head>")
-                .append("<body>")
-                .append("<h1>Add Game</h1>")
-                .append("<form action= \"").append(contextPath).append("/game/insert\" method= \"post\">")
-                .append("Date:").append("<input type=\"date\" name=\"date\">")
-                .append("<br/>")
-                .append("Time:").append("<input type=\"time\" name=\"time\">")
-                .append("<br/>")
-                .append("Opponent:").append("<input type=\"text\" name=\"opponent\">")
-                .append("<br/>")
-                .append("Stadium:").append("<input type=\"text\" name=\"stadium\">")
-                .append("<br/>")
-                .append("<input type=\"submit\" value=\"Submit\">")
-                .append("<br/>")
-                .append("</form>")
-                .append("<a href="+request.getContextPath()+"/gameMenu.jsp><input type=button value=Back></a>")
-                .append("</body>")
-                .append("</html>");
-
-        PrintWriter out = response.getWriter();
-        out.println(builder);
-        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/game/gameForm.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
@@ -81,8 +54,8 @@ public class CreateGameServlet extends HttpServlet {
         Stadium stadium = ss.findStadiumFromName(sstadium);
         Game newGame = new Game(opponent,dateTime, stadium);
         gs.createGame(newGame);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../gamelist");
-        dispatcher.forward(request,response);
+        
+        response.sendRedirect("../gamelist");
+        
     }
-
 }

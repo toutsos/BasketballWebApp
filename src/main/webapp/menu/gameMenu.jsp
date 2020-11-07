@@ -12,9 +12,11 @@
         <title>Games menu</title>
     </head>
     <body>
+        <div align='center'>
         <h1>Game Information</h1>
         <a href="<%request.getContextPath();%>/BasketWebApp/gamelist"><h2>Game List</h2></a>
         <a href="<%request.getContextPath();%>/BasketWebApp/game/insert"><h2>Add new Game</h2></a>
         <a href="<%request.getContextPath();%>/BasketWebApp/mainMenu.jsp"><input type=button value=Back></a>
+        </div>
     </body>
 </html>

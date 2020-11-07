@@ -27,33 +27,9 @@ public class CreatePlayerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        StringBuilder builder = new StringBuilder();
-        String contextPath = request.getContextPath();
-        builder.append("<!DOCTYPE html>")
-                .append("<html>")
-                .append("<head>")
-                .append("<title>Insert Player</title>")
-                .append("</head>")
-                .append("<body>")
-                .append("<h1>New Player</h1>")
-                .append("<form action= \"").append(contextPath).append("/player/insert\" method= \"post\">")
-                .append("Name:").append("<input type=\"text\" name=\"name\">")
-                .append("<br/>")
-                .append("Age:").append("<input type=\"text\" name=\"age\">")
-                .append("<br/>")
-                .append("Phone:").append("<input type=\"text\" name=\"phone\">")
-                .append("<br/>")
-                .append("Height:").append("<input type=\"text\" name=\"height\">")
-                .append("<br/>")
-                .append("Weight:").append("<input type=\"text\" name=\"weight\">")
-                .append("<br/>")
-                .append("<input type=\"submit\" value=\"Submit\">")
-                .append("</form>")
-                .append("</body>")
-                .append("</html>");
-
-        PrintWriter out = response.getWriter();
-        out.println(builder);
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/player/playerForm.jsp");
+        dispatcher.forward(request, response);
         
     }//doGet
     
@@ -73,8 +49,9 @@ public class CreatePlayerServlet extends HttpServlet {
         double pweight = Double.parseDouble(weight);
         Player newPlayer = new Player(pname,page,pphone,pheight,pweight);
         ps.createPlayer(newPlayer);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("../playerlist");
-        dispatcher.forward(request,response);
+        
+        response.sendRedirect("../playerlist");
+        
         
     }//doPost
     

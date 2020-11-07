@@ -12,10 +12,12 @@
         <title>Team Coach Information</title>
     </head>
     <body>
+        <div align='center'>
         <h1>Coach Information</h1>
         <a href="<%request.getContextPath();%>/BasketWebApp/currentcoach"><h2>Current Coach Information</h2></a>
         <a href="<%request.getContextPath();%>/BasketWebApp/insertcoach"><h2>Insert new Coach</h2></a>
         <a href="<%request.getContextPath();%>/BasketWebApp/previouscoaches"><h2>Coach History</h2></a>
-        <a href="<%request.getContextPath();%>/BasketWebApp/teamMenu.jsp"><input type=button value=Back></a>
+        <a href="<%request.getContextPath();%>/BasketWebApp/menu/teamMenu.jsp"><input type=button value=Back></a>
+        </div>
     </body>
 </html>

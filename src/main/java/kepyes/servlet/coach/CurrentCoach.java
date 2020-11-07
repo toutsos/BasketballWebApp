@@ -8,6 +8,7 @@ package kepyes.servlet.coach;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,28 +29,14 @@ public class CurrentCoach extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       CoachService cs = new CoachService();
+        CoachService cs = new CoachService();
         List<Coach> listOfCoaches = cs.getCoaches();
-        StringBuilder builder = new StringBuilder();
-        builder.append("<!DOCTYPE html>")
-                .append("<html>")
-                .append("<head>")
-                .append("<title>Current Coach</title>")
-                .append("</head>")
-                .append("<body>")
-                .append("<h1>Current Coach</h1>")
-                .append("<table border=\"1\">");
-                 Coach c = listOfCoaches.get(listOfCoaches.size()-1);
-                 builder.append("<td>").append(c.getName()).append("</td>")
-                .append("<td>").append(c.getStart()).append("</td>")
-                .append("<td>").append(c.getSalary()).append("</td>")
-                .append("<tr>");
-                 builder.append("</table>")
-                .append("<a href="+request.getContextPath()+"/coachMenu.jsp><input type=button value=Back></a>")
-                .append("</body>")
-                .append("</html>");
-        PrintWriter out = response.getWriter();
-        out.println(builder);
+        Coach coach = listOfCoaches.get(listOfCoaches.size()-1);
+        request.setAttribute("coach", coach);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/coach/currentCoach.jsp");
+        dispatcher.forward(request, response);
+        
+        
     }
 
     @Override

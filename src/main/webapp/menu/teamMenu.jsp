@@ -12,11 +12,12 @@
         <title>Team Information</title>
     </head>
     <body>
+        <div align='center'>
         <h1>Team information</h1>
         <a href="<%request.getContextPath();%>/BasketWebApp/playerlist"><h2>Player Information</h2></a>
-        <a href="<%request.getContextPath();%>/BasketWebApp/coachMenu.jsp"><h2>Coach Information</h2></a>
+        <a href="<%request.getContextPath();%>/BasketWebApp/menu/coachMenu.jsp"><h2>Coach Information</h2></a>
         <a href="<%request.getContextPath();%>/BasketWebApp/stadiumlist"><h2>Stadium Information</h2></a>
        <a href="<%request.getContextPath();%>/BasketWebApp/mainMenu.jsp"><input type=button value=Back></a>
-        
+        </div>
     </body>
 </html>

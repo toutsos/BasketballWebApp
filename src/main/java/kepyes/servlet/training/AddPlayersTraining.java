@@ -40,6 +40,7 @@ public class AddPlayersTraining extends HttpServlet {
                 .append("<title>Insert Player</title>")
                 .append("</head>")
                 .append("<body>")
+                .append("<div align='center'>")
                 .append("<h1>New Player</h1>")
                 .append("<form action= \"").append(contextPath).append("/insertplayers").append("\"method= \"post\">")
                 .append("Name:").append("<input type=\"text\" name=\"name\">")
@@ -50,6 +51,7 @@ public class AddPlayersTraining extends HttpServlet {
                 .append("<input type=\"submit\" value=\"Submit\">")
                 .append("<a href="+request.getContextPath()+"/traininglist><input type=button value=Back></a>")
                 .append("</form>")
+                .append("</div>")
                 .append("</body>")
                 .append("</html>");
 

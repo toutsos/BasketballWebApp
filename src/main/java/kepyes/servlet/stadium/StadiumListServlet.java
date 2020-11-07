@@ -8,6 +8,7 @@ package kepyes.servlet.stadium;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,28 +30,11 @@ public class StadiumListServlet extends HttpServlet {
             throws ServletException, IOException {
         StadiumService ss = new StadiumService();
         List<Stadium> listOfStadiums = ss.getStadiums();
-        StringBuilder builder = new StringBuilder();
-        builder.append("<!DOCTYPE html>")
-                .append("<html>")
-                .append("<head>")
-                .append("<title>Stadiums List</title>")
-                .append("</head>")
-                .append("<body>")
-                .append("<a href=\"").append(request.getContextPath()).append("/stadium/insert").append("\"> NEW STADIUM</a>")
-                .append("<h1>Stadiums List</h1>")
-                .append("<table border=\"1\">");
-        for (Stadium s : listOfStadiums){
-                builder.append("<tr>")
-                .append("<td>").append(s.getName()).append("</td>")
-                .append("<td>").append("<a href=\"").append(request.getContextPath()).append("/stadium/delete?id=").append(s.getId()).append("\">delete</a>").append("</td>")
-                .append("<tr>");
-            }
-        builder.append("</table>")
-                .append("<a href="+request.getContextPath()+"/teamMenu.jsp><input type=button value=Back></a>")
-                .append("</body>")
-                .append("</html>");
-        PrintWriter out = response.getWriter();
-        out.println(builder);
+        request.setAttribute("listOfStadiums", listOfStadiums);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/stadium/stadiumList.jsp");
+        dispatcher.forward(request, response);
+        
+        
                 
     }
     

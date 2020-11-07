@@ -88,17 +88,6 @@ public class Team {
         trainings.add(x);
     }
    
-//    public void showTrainings (){
-//        for (int i=0;i<trainings.size();i++){
-//           trainings.get(i).showTraining();
-//        }
-//        if(trainings.size()==0){
-//            System.out.println("---------------------------------------");
-//            System.out.println("No scheduled trainings!");
-//        }//if
-//    }//showTrainings
-
-    
     public void addNewGame(Game x){
         games.add(x);
     }//addNewGame
